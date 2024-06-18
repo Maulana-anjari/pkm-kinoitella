@@ -1,91 +1,424 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" class="smooth-scroll">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Kinoitella</title>
     <!-- Favicon -->
     <link rel="shorcut icon" href="assets/icon/kinoitella.png" type="image/x-icon">
-    
-    <!-- Font Awesome CDN -->
+    <!-- Tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <!-- Font Inter -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&family=Questrial&display=swap" rel="stylesheet">
     <!-- Hamburgers -->
     <link href="../src/dist/css/hamburgers.css" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link href="../src/dist/css/output.css" rel="stylesheet">
-    <title>Kinoitella</title>
+    <style>
+        .header {
+            transition: top 0.3s;
+        }
+        .kinoitella-bg {
+            background-color: #357665;
+        }
+        .kinoitella-text {
+            color: #357665;
+        }
+        .font-chau {
+            font-family: "Chau Philomene One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .font-questrial {
+            font-family: "Questrial", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .container-bg {
+            background-image: url('../public/assets/image/pattern.png'); /* Update with the correct path */
+            background-repeat: repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .home {
+            width: 100%;
+            height: 100vh; /* sesuaikan dengan tinggi yang diinginkan */
+            background: 
+                linear-gradient(180deg, white, rgba(255, 255, 255, 0.05)),
+                url("../public/assets/image/hero-kinoitella.png") center/cover no-repeat;
+        }
+        @keyframes boing-boing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-boing {
+            animation: boing-boing 1s infinite;
+        }
+        .button-contact-us{
+            outline-color: #357665;
+            outline-style: solid;
+            color: #357665;
+        }
+        :hover.button-contact-us{
+            background-color: #357665;
+            color: #fff;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .hero-background {
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: url('../public/assets/image/woosh.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        .hamburger.is-active .hamburger-inner, 
+        .hamburger.is-active .hamburger-inner::before, 
+        .hamburger.is-active .hamburger-inner::after {
+            background-color: #357665;
+        }
+        .hamburger .hamburger-inner, 
+        .hamburger .hamburger-inner::before, 
+        .hamburger .hamburger-inner::after {
+            background-color: #357665;
+        }
+        @media screen and (max-width: 768px) {
+            .menu {
+                transform: scale(0);
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                -ms-transform: scale(0);
+                -o-transform: scale(0);
+                transform-origin: top right;
+                opacity: 0;
+                transition: all 0.3s ease;
+                -webkit-transition: all 0.3s ease;
+                -moz-transition: all 0.3s ease;
+                -ms-zoom-transition: all 0.3s ease;
+                -o-transition: all 0.3s ease;
+                background-color: #357665;
+            }
+            .menu.menu-active {
+                transform: scale(1);
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            .whatsapp-button {
+                display: none; /* Sembunyikan tombol untuk ukuran layar kecil */
+            }
+            .whatsapp-button-menu {
+                display: none;
+            }
+        }
+        @media (max-width: 640px) {
+            .whatsapp-button-menu {
+                display: block;
+                outline-color: #fff;
+                outline-style: solid;
+                color: #357665;
+                background-color: #fff;
+                border-radius: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+        /* Gaya untuk tombol media sosial */
+        .social-media-button {
+            display: inline-block;
+            width: 40px; /* Ubah sesuai dengan kebutuhan */
+            height: 40px; /* Ubah sesuai dengan kebutuhan */
+            background-color: #357665;
+            color: white;
+            border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
+            text-align: center;
+            line-height: 40px; /* Agar ikon berada di tengah */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Efek transisi saat hover */
+        }
+
+        /* Efek hover */
+        .social-media-button:hover {
+            background-color: white;
+            color: #357665;
+            border: 2px solid #357665; /* Menambahkan outline saat dihover */
+        }
+    </style>
 </head>
-<body class="bg-kinoitella relative">
-    <!-- Navbar -->
-    <div class="navbar md:px-20 px-4 py-3 bg-white">
-        <div class="container mx-auto">
-            <div class="navbar-box flex items-center justify-between">
-                <div class="logo flex items-center gap-x-2">
-                    <img class="md:w-8 w-12" src="assets/image/logo-kinoitella.png" alt="Logo Kinoitella">
-                    <h1 class="font-bold md:text-2xl text-xl">Kinoitella</h1>
-                </div>
-                <ul class="menu flex gap-x-7 items-center font-bold md:static absolute z-10 top-24 left-0 flex-col md:flex-row bg-kinoitella md:bg-transparent md:w-auto w-full">
-                    <li class="py-3 w-full md:w-auto text-center"><a href="#header" class="hover:text-kinoitella">Home</a></li>
-                    <li class="py-3 w-full md:w-auto text-center"><a href="#about" class="hover:text-kinoitella">About</a></li>
-                    <li class="py-3 w-full md:w-auto text-center"><a href="#packaging" class="hover:text-kinoitella">Packaging</a></li>
-                    <li class="py-3 w-full md:w-auto text-center"><a href="#howtouse" class="hover:text-kinoitella">How to Use</a></li>
-                    <li class="py-3 w-full md:w-auto text-center"><a href="#contact" class="hover:text-kinoitella">Contact</a></li>
-                    <a href="https://wa.me/62895619386814" target="_blank">
-                        <button class="mb-1 md:w-auto text-center bg-white outline outline-kinoitella hover:bg-kinoitella rounded-xl py-2 px-4 hover:text-white text-kinoitella cursor-pointer" type="button">
-                            <i class="fa-brands fa-whatsapp px-1"></i> Order Now!
-                        </button>
-                    </a>
-                    
-                </ul>
-                <div class="md:hidden block">
-                    <button class="hamburger hamburger--squeeze" type="button">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner bg-kinoitella before:bg-kinoitella after:bg-kinoitella"></span>
-                        </span>
-                    </button>
-                </div>
+<body class="kinoitella-bg">
+
+<!-- Header Section -->
+<header id="header" class="header bg-white py-4 fixed w-full top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center px-4 md:px-40">
+        <a href="#home">
+            <div class="logo flex items-center gap-x-2">
+                <img class="md:w-8 w-12" src="./assets/image/logo-kinoitella.png" alt="Logo Kinoitella">
+                <h1 class="font-bold md:text-2xl text-xl font-chau">Kinoitella</h1>
             </div>
+        </a>
+        <nav class="menu gap-x-6 space-x-6 flex flex-col md:flex-row md:static absolute z-10 top-24 left-0 md:w-auto w-full items-center">
+            <a href="#home" class="text-white md:text-black hover:text-green-600 py-3 text-center">Home</a>
+            <a href="#about" class="text-white md:text-black hover:text-green-600 py-3 text-center">About</a>
+            <a href="#packaging" class="text-white md:text-black hover:text-green-600 py-3 text-center">Packaging</a>
+            <a href="#composition" class="text-white md:text-black hover:text-green-600 py-3 text-center">Composition</a>
+            <a href="#howtouse" class="text-white md:text-black hover:text-green-600 py-3 text-center">How to use</a>
+            <a href="#contact" class="text-white md:text-black hover:text-green-600 py-3 text-center">Contact</a>
+            <a href="https://wa.me/62895619386814" target="_blank" class="hidden whatsapp-button-menu">
+                <button class="button-contact-us md:w-auto text-center rounded-xl py-2 px-4 cursor-pointer" type="button">
+                    <i class="fa-brands fa-whatsapp px-1"></i> Contact Us!
+                </button>
+            </a>
+        </nav>
+        <a href="https://wa.me/62895619386814" target="_blank" class="whatsapp-button">
+            <button class="button-contact-us md:w-auto text-center rounded-xl py-2 px-4 cursor-pointer" type="button">
+                <i class="fa-brands fa-whatsapp px-1"></i> Contact Us!
+            </button>
+        </a>
+        <div class="md:hidden block">
+            <button class="hamburger hamburger--squeeze" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner kinoitella-bg before:bg-kinoitella after:bg-kinoitella"></span>
+                </span>
+            </button>
         </div>
     </div>
-    <!-- Navbar -->
+</header>
 
-    <!-- Header -->
-    <div class="header min-h-screen flex items-center" id="header">
-        <div class="container mx-auto px-4">
-            <div class="header-box flex items-center flex-col md:gap-10 gap-5">
-                <div class="box block">
-                    <img src="./assets/image/logo-kinoitella.png" alt="Logo Kinoitella" class="md:w-32 w-20">
+<!-- Main Section -->
+<main class="container container-bg mx-auto px-0 py-10 relative">
+    <!-- Hero Section -->
+    <section class="flex items-center justify-center min-h-screen text-center home" id="home">
+        <div class="header-box flex items-center justify-center flex-col md:gap-10 gap-5">
+            <div class="box block">
+                <img src="../public/assets/image/logo-kinoitella.png" alt="Plant and Fertilizer" class="md:w-28 w-16">
+            </div>
+            <div class="box block">
+                <h1 class="text-4xl md:text-6xl font-bold kinoitella-text mb-4 font-chau">Kinoitella, Quality Fertilizer <br>for a Good Plant</h1>
+            </div>
+            <button class="box block cursor-pointer md:w-12 w-10 mt-20 animate-boing">
+                <a href="#scoop">
+                    <img src="./assets/icon/arrow-down.png" alt="cursor">
+                </a>
+            </button>
+        </div>
+    </section>
+
+    <!-- Separator Image -->
+    <!-- <div class="separator-container">
+        <img src="../public/assets/image/pemisah.png" alt="Separator" class="separator-image">
+    </div> -->
+
+    <!-- Kinoitella in scoop -->
+    <section class="py-10 px-4 md:px-40" id="scoop">
+        <div class="flex justify-center items-center mx-auto">
+            <img src="../public/assets/image/kinoitella-scoop.png" alt="Kinoitella Scoop" class="w-full max-w-2xl shadow-lg">
+        </div>
+    </section>
+
+    <!-- Why Choose Kinoitella Section -->
+    <section class="bg-white py-10 px-4 md:px-40" id="about">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-4xl font-bold kinoitella-text font-chau">3 ALASAN MEMILIH KINOITELLA</h2>
+            <p class="text-gray-600">Kinoitella hadir tidak hanya menawarkan kualitas terbaik, tetapi juga inovasi yang luar biasa.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 justify-center items-center mx-auto">
+            <!-- Card 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4">
+                    <i class="fa-solid fa-seedling text-4xl pr-4"></i>
+                    <h3 class="text-xl font-bold text-gray-700">Alasan 1</h3>
                 </div>
-                <div class="box block">
-                    <h1 class="font-bold lg:text-6xl md:text-4xl text-2xl text-center text-kinoitella shadow-sm">Kinoitella, Quality Fertilizer <br> for a Good Plant</h1>
+                <p class="text-gray-600">Deskripsi singkat tentang alasan pertama yang menjelaskan manfaatnya.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4">
+                    <i class="fa-solid fa-seedling text-4xl pr-4"></i>
+                    <h3 class="text-xl font-bold text-gray-700">Alasan 2</h3>
                 </div>
-                <button class="box block cursor-pointer">
-                    <a href="#about">
-                        <img src="./assets/image/cursor.png" alt="cursor">
-                    </a>
+                <p class="text-gray-600">Deskripsi singkat tentang alasan kedua yang menjelaskan manfaatnya.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4">
+                    <i class="fa-solid fa-seedling text-4xl pr-4"></i>
+                    <h3 class="text-xl font-bold text-gray-700">Alasan 3</h3>
+                </div>
+                <p class="text-gray-600">Deskripsi singkat tentang alasan ketiga yang menjelaskan manfaatnya.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Packaging Section -->
+    <section class="py-10 px-4 md:px-40 bg-teal-700" id="packaging">
+        <h2 class="text-2xl md:text-4xl font-bold text-white text-center mb-10 font-chau">
+            Kinoitella Tersedia dalam 2 Kemasan Menarik
+        </h2>
+        <div class="flex flex-col md:flex-row justify-center items-center md:space-x-10 space-y-6 md:space-y-0">
+            <!-- Kemasan Box -->
+            <div class="relative text-center">
+                <img src="../public/assets/image/kemasan-box.png" alt="Kemasan Box" class="w-full max-w-xs mb-4">
+                <p class="text-white absolute top-4 left-1/2 transform -translate-x-1/2">Kemasan Box</p>
+            </div>
+            <!-- Kemasan Box Terbuka -->
+            <div class="relative text-center">
+                <img src="../public/assets/image/kemasan-box-terbuka.png" alt="Kemasan Box Terbuka" class="w-full max-w-xs mb-4">
+                <p class="text-white absolute top-4 left-1/2 transform -translate-x-1/2">Kemasan Box Terbuka</p>
+            </div>
+            <!-- Kemasan Pouch -->
+            <div class="relative text-center">
+                <img src="../public/assets/image/kemasan-pouch.png" alt="Kemasan Pouch" class="w-full max-w-xs mb-4">
+                <p class="text-white absolute top-4 left-1/2 transform -translate-x-1/2">Kemasan Pouch</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Composition Section -->
+    <section class="bg-white py-10 px-4 md:px-40" id="composition">
+        <h2 class="text-2xl md:text-4xl font-bold kinoitella-text text-center mb-10 font-chau">Komposisi Kinoitella Fertilizer</h2>
+        <p class="text-center text-gray-600">KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI,</p>
+        <p class="text-center text-gray-600">KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI,</p>
+        <p class="text-center text-gray-600">KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI,</p>
+        <p class="text-center text-gray-600">KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI,</p>
+        <p class="text-center text-gray-600">KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI,</p>
+        <p class="text-center text-gray-600">KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI, KOMPOSISI,</p>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="py-10 px-4 md:px-40" id="howtouse">
+        <h2 class="text-2xl md:text-4xl font-bold text-white text-center mb-10 font-chau">Cara Penggunaan Kinoitella</h2>
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-4">
+                <button class="w-full text-left bg-white p-4 border rounded-lg" onclick="toggleStep(1)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold">Langkah 1</h3>
+                        <i id="arrow-1" class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div id="step-1" class="hidden mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </button>
+            </div>
+            <div class="mb-4">
+                <button class="w-full text-left bg-white p-4 border rounded-lg" onclick="toggleStep(2)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold">Langkah 2</h3>
+                        <i id="arrow-1" class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div id="step-2" class="hidden mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </button>
+            </div>
+            <div class="mb-4">
+                <button class="w-full text-left bg-white p-4 border rounded-lg" onclick="toggleStep(3)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold">Langkah 3</h3>
+                        <i id="arrow-1" class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div id="step-3" class="hidden mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </button>
+            </div>
+            <div class="mb-4">
+                <button class="w-full text-left bg-white p-4 border rounded-lg" onclick="toggleStep(4)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold">Langkah 4</h3>
+                        <i id="arrow-1" class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div id="step-4" class="hidden mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </button>
+            </div>
+            <div class="mb-4">
+                <button class="w-full text-left bg-white p-4 border rounded-lg" onclick="toggleStep(5)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold">Langkah 5</h3>
+                        <i id="arrow-1" class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div id="step-5" class="hidden mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                 </button>
             </div>
         </div>
-    </div>
-    <!-- Header -->
-    <!-- Section -->
-    <div class="artefact w-full absolute">
-        <img src="../public/assets/image/pemisah.png" alt="">
-    </div>
-    <!-- Section -->
-    <!-- About -->
-    <div class="about min-h-screen flex items-center" id="about">
+    </section>
+</main>
 
+<!-- Footer Section -->
+<footer class="bg-white py-6 px-4 md:px-40" id="contact">
+    <div class="container text-center flex flex-col justify-center">
+        <h1 class="mb-4 text-2xl kinoitella-text">Kinoitella, Quality Fertilizer for a Good Plant</h1>
+        <p class="mb-4 max-w-4xl mx-auto text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam dui ac ultrices consectetur. Vivamus sed placerat orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        <div class="flex justify-center gap-6 flex-wrap md:flex-nowrap">
+            <div class="grid grid-cols-3 gap-4 justify-center md:flex md:justify-center">
+                <a href="#" class="social-media-button"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-media-button"><i class="fa-regular fa-envelope"></i></a>
+                <a href="#" class="social-media-button"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-media-button"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="social-media-button"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-media-button"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <p class="mt-4">&copy; 2024 Kinoitella</p>
     </div>
-    <!-- About -->
+</footer>
+
+
+
+<script>
+    function toggleStep(step) {
+        const stepContent = document.getElementById('step-' + step);
+        stepContent.classList.toggle('hidden');
+        const arrowIcon = document.getElementById('arrow-' + step);
+        arrowIcon.classList.toggle('fa-chevron-down');
+        arrowIcon.classList.toggle('fa-chevron-up');
+    }
     
-    <script src="../src/dist/js/script.js"></script>
+    let lastScrollTop = 0;
+    const header = document.getElementById('header');
+    
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            header.style.top = '-100px';
+        } else {
+            // Scrolling up
+            header.style.top = '0';
+        }
+        lastScrollTop = scrollTop;
+    });
+    document.querySelector('button a').addEventListener('click', function (event) {
+        event.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+    const hamberger = document.querySelector(".hamburger");
+    const menu = document.querySelector(".menu")
+    hamberger.addEventListener('click', () => {
+        hamberger.classList.toggle('is-active');
+        menu.classList.toggle("menu-active");
+    })
+    </script>
+
 </body>
 </html>
